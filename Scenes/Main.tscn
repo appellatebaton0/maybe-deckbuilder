@@ -29,12 +29,17 @@ outer_vertices = 22
 outer_radius = 20.0
 inner_vertices = 22
 inner_radius = 17.0
-metadata/_custom_type_script = "uid://tqhpfbi0dgdi"
 
 [node name="ArrowButton" parent="." unique_id=256118746 instance=ExtResource("3_kln2b")]
 offset_left = 109.0
 offset_top = 77.0
 offset_right = 117.0
+offset_bottom = 89.0
+
+[node name="ArrowButton2" parent="." unique_id=1321733083 instance=ExtResource("3_kln2b")]
+offset_left = 119.0
+offset_top = 77.0
+offset_right = 127.0
 offset_bottom = 89.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=400383172]

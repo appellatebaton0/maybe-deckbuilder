@@ -11,16 +11,16 @@ offset_bottom = 12.0
 flat = true
 script = ExtResource("1_p2q6r")
 
-[node name="PulseEffectPolygon2D" type="Polygon2D" parent="." unique_id=591062556]
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2123929794]
+color = Color(1, 0.5019608, 0.5019608, 1)
+polygon = PackedVector2Array(0, 0, 1, 0, 6, 6, 1, 12, 0, 12)
+
+[node name="PulseEffectPolygon2D" type="Polygon2D" parent="Polygon2D" unique_id=591062556]
 self_modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
 color = Color(1, 0.65882355, 0.65882355, 1)
-polygon = PackedVector2Array(1.93859, -1.21677, 7.5, 5.45693, 7.5, 6.54307, 1.93859, 13.21677, 1.33388, 13.5, -0.62132, 13.5, -1.5, 12.62132, -1.5, -0.62132, -0.62132, -1.5, 1.33388, -1.5)
+polygon = PackedVector2Array(2.68946, -2.19018, 8.7, 5.02247, 8.7, 6.97753, 2.68946, 14.19018, 1.60098, 14.7, -1.11838, 14.7, -2.7, 13.11838, -2.7, -1.11838, -1.11838, -2.7, 1.60098, -2.7)
 uv = PackedVector2Array(-260.4, 14)
 script = ExtResource("2_hj8dc")
 _source_polygon = PackedVector2Array(0, 0, 1, 0, 6, 6, 1, 12, 0, 12)
 metadata/_custom_type_script = "uid://8lm70yv1qi0p"
-
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2123929794]
-color = Color(1, 0.5019608, 0.5019608, 1)
-polygon = PackedVector2Array(0, 0, 1, 0, 6, 6, 1, 12, 0, 12)

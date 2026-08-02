@@ -32,6 +32,10 @@ folder_colors={
 "res://Scripts/": "yellow"
 }
 
+[gui]
+
+theme/custom="uid://dng837ml381c0"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

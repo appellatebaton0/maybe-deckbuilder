@@ -4,6 +4,7 @@ class_name PulseEffectPolygon2D extends Polygon2D
 
 @export var pulse_length := 0.5
 @export var pulse_width := 2.7
+var _current_width := 0.0
 
 @export_tool_button("Test Pulse") var test_pulse = pulse
 @export_tool_button("Inherit Source") var inherit_source = func():
@@ -44,3 +45,4 @@ func pulse():
 
 func _regen_width(new_width:float) -> void:
 	polygon = Geometry2D.offset_polygon(_source_polygon, new_width)[0]
+	_current_width = new_width
