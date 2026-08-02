@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://b6fq3t4cq5a75"]
+
+[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="1_idj7w"]
+[ext_resource type="Shader" path="res://Assets/Shaders/HSVLock.gdshader" id="1_r150o"]
+[ext_resource type="Script" path="res://Scripts/UI/ArrowButton.gd" id="2_kln2b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r150o"]
+shader = ExtResource("1_r150o")
+shader_parameter/hue_lock = 150.0
+shader_parameter/sat_lock = -1.0
+shader_parameter/val_lock = -1.0
+
+[node name="Main" type="Node" unique_id=1870239524]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2140020456]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3, 0.15, 0.15, 1)
+
+[node name="RegularPolygon" type="Polygon2D" parent="." unique_id=1948092990]
+position = Vector2(87, 83)
+color = Color(1, 0.5, 0.5, 1)
+polygon = PackedVector2Array(20, 0, 19.18986, 5.634651, 16.82507, 10.812816, 13.097215, 15.114992, 8.308301, 18.192638, 2.8462973, 19.796429, -2.8462968, 19.796429, -8.3083, 18.192638, -13.097214, 15.114993, -16.825071, 10.812816, -19.18986, 5.634652, -20, -1.7484556e-06, -19.18986, -5.634651, -16.825071, -10.812815, -13.097215, -15.114992, -8.308302, -18.192638, -2.8463004, -19.796429, 2.8463006, -19.796429, 8.308302, -18.192638, 13.097215, -15.114992, 16.82507, -10.812818, 19.189857, -5.634655, 20, 0, 17, 0, 16.31138, -4.7894564, 14.301309, -9.190895, 11.132632, -12.847743, 7.062057, -15.463743, 2.4193554, -16.826965, -2.4193552, -16.826965, -7.0620565, -15.463743, -11.132632, -12.847743, -14.301311, -9.190892, -16.31138, -4.7894535, -17, -1.4861872e-06, -16.31138, 4.7894545, -14.301311, 9.190893, -11.132631, 12.847744, -7.062055, 15.463743, -2.4193523, 16.826965, 2.4193528, 16.826965, 7.0620556, 15.463743, 11.132632, 12.847743, 14.30131, 9.190893, 16.31138, 4.7894535, 17, 0)
+script = ExtResource("1_idj7w")
+outer_vertices = 22
+outer_radius = 20.0
+inner_vertices = 22
+inner_radius = 17.0
+metadata/_custom_type_script = "uid://tqhpfbi0dgdi"
+
+[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=655420064]
+position = Vector2(110, 75)
+scale = Vector2(1.2902026, 1.2902026)
+color = Color(1, 0.7, 0.7, 0.3764706)
+polygon = PackedVector2Array(0, 0, 0, 12, 1, 12, 6, 6, 1, 0)
+script = ExtResource("2_kln2b")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=701616685]
+position = Vector2(110, 77)
+color = Color(1, 0.5, 0.5, 1)
+polygon = PackedVector2Array(0, 0, 0, 12, 1, 12, 6, 6, 1, 0)
+script = ExtResource("2_kln2b")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=400383172]
+
+[node name="PostProcess" type="ColorRect" parent="CanvasLayer" unique_id=704268011]
+material = SubResource("ShaderMaterial_r150o")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)

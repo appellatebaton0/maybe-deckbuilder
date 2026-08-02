@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://867vf2rfr3px"]
+
+[ext_resource type="Script" path="res://Scripts/UI/ArrowButton.gd" id="1_p2q6r"]
+
+[sub_resource type="GDScript" id="GDScript_p2q6r"]
+script/source = "
+@tool
+extends Polygon2D
+
+@export_tool_button(\"Test\") var c := func():
+	
+	var mid_point := Vector2(0., 0.)
+	
+	for point in polygon:
+		mid_point += point
+	mid_point /= polygon.size()
+	
+	offset = -mid_point
+	position = mid_point
+"
+
+[node name="Polygon2D" type="Polygon2D" unique_id=974857558]
+color = Color(1, 0.5, 0.5, 1)
+polygon = PackedVector2Array(0, 0, 0, 12, 1, 12, 6, 6, 1, 0)
+script = ExtResource("1_p2q6r")
+
+[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=347838957]
+show_behind_parent = true
+position = Vector2(8.172949, -0.7009058)
+polygon = PackedVector2Array(0, 0, 1, 0, 1, 15, 0, 15)
+
+[node name="Polygon2D3" type="Polygon2D" parent="." unique_id=1798513281]
+show_behind_parent = true
+position = Vector2(6.920006, -1.1169243)
+rotation = -0.6981317
+polygon = PackedVector2Array(0, 0, 1, 0, 1, 15, 0, 15)
+
+[node name="Polygon2D4" type="Polygon2D" parent="." unique_id=1275763446]
+show_behind_parent = true
+position = Vector2(8.641114, 12.589342)
+rotation = -2.443461
+polygon = PackedVector2Array(0, 0, 1, 0, 1, 15, 0, 15)
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1001018414]
+show_behind_parent = true
+position = Vector2(2, 6)
+color = Color(1, 0.7, 0.7, 0.7058824)
+offset = Vector2(-2, -6)
+texture_offset = Vector2(-1.29, 0)
+polygon = PackedVector2Array(1, 0, 0, 0, 0, 12, 1, 12, 6, 6, 1, 0, 1, 1.574, 4.695, 6, 1, 10.386)
+script = SubResource("GDScript_p2q6r")
