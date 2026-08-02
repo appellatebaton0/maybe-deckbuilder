@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b6fq3t4cq5a75"]
 
-[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="1_idj7w"]
-[ext_resource type="Shader" path="res://Assets/Shaders/HSVLock.gdshader" id="1_r150o"]
-[ext_resource type="Script" path="res://Scripts/UI/ArrowButton.gd" id="2_kln2b"]
+[ext_resource type="Script" uid="uid://bmk4hpwk010xa" path="res://Scripts/RegularPolygon.gd" id="1_idj7w"]
+[ext_resource type="Shader" uid="uid://d186wwy6s4tux" path="res://Assets/Shaders/HSVLock.gdshader" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://867vf2rfr3px" path="res://Scenes/UI/ArrowButton.tscn" id="3_kln2b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r150o"]
 shader = ExtResource("1_r150o")
@@ -31,18 +31,11 @@ inner_vertices = 22
 inner_radius = 17.0
 metadata/_custom_type_script = "uid://tqhpfbi0dgdi"
 
-[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=655420064]
-position = Vector2(110, 75)
-scale = Vector2(1.2902026, 1.2902026)
-color = Color(1, 0.7, 0.7, 0.3764706)
-polygon = PackedVector2Array(0, 0, 0, 12, 1, 12, 6, 6, 1, 0)
-script = ExtResource("2_kln2b")
-
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=701616685]
-position = Vector2(110, 77)
-color = Color(1, 0.5, 0.5, 1)
-polygon = PackedVector2Array(0, 0, 0, 12, 1, 12, 6, 6, 1, 0)
-script = ExtResource("2_kln2b")
+[node name="ArrowButton" parent="." unique_id=256118746 instance=ExtResource("3_kln2b")]
+offset_left = 109.0
+offset_top = 77.0
+offset_right = 117.0
+offset_bottom = 89.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=400383172]
 
@@ -53,4 +46,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(1, 0, 0, 1)
