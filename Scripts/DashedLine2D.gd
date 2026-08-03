@@ -23,16 +23,18 @@ enum SAMPLE_METHOD {COUNT, DISTANCE}
 @export var sample_distance := 1.:
 	set(to):
 		sample_distance = maxf(to, 1.)
+		sample_length = sample_length
 		queue_redraw()
 @export var sample_length := 1.:
 	set(to):
-		sample_length = maxf(to, 1.)
+		sample_length = clampf(to, 0.0, sample_distance - line_width)
 		queue_redraw()
 
 ## The width of the line. Had to be separate from the Line2D width for *reasons*
 @export var line_width := 10.:
 	set(to):
 		line_width = maxf(to, 0.001)
+		sample_length = sample_length
 		queue_redraw()
 
 func _ready() -> void: width = 0. # The aforementioned *reasons*. Gotta hide the original line.

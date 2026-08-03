@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://vo3icwm517sa"]
+
+[ext_resource type="FontFile" uid="uid://bc0guixa3awho" path="res://Assets/Fonts/squares-bold.regular.otf" id="1_346em"]
+[ext_resource type="Script" uid="uid://p1yo58rsdndu" path="res://Scripts/UI/BumperButton.gd" id="2_j1l8g"]
+[ext_resource type="Script" uid="uid://8lm70yv1qi0p" path="res://Scripts/UI/PulseEffectPolygon.gd" id="3_0odji"]
+
+[node name="BumperButton" type="Button" unique_id=690257377]
+texture_filter = 3
+offset_right = 189.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0.3, 0.14700001, 0.14700001, 1)
+theme_override_fonts/font = ExtResource("1_346em")
+theme_override_font_sizes/font_size = 21
+text = "BUTTON"
+flat = true
+script = ExtResource("2_j1l8g")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=152612953]
+show_behind_parent = true
+position = Vector2(-31, 0)
+color = Color(1, 0.5019608, 0.5019608, 1)
+polygon = PackedVector2Array(6, 0, 21, 0, 15, 26, 0, 26)
+
+[node name="PulseEffectPolygon2D" type="Polygon2D" parent="Polygon2D" unique_id=1097211058]
+self_modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
+color = Color(1, 0.56, 0.56, 1)
+polygon = PackedVector2Array(23.92368, -0.66178, 17.41882, 27.52593, 15.94295, 28.7, -1.30225, 28.7, -2.92368, 26.66178, 3.58118, -1.52593, 5.05705, -2.7, 22.30225, -2.7)
+script = ExtResource("3_0odji")
+_source_polygon = PackedVector2Array(6, 0, 21, 0, 15, 26, 0, 26)
+metadata/_custom_type_script = "uid://8lm70yv1qi0p"
+
+[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=839514662]
+show_behind_parent = true
+position = Vector2(94.5, 13)
+color = Color(1, 0.5019608, 0.5019608, 1)
+polygon = PackedVector2Array(-94.5, -13, 100.5, -13, 94.5, 13, -100.5, 13)

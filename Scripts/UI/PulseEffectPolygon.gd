@@ -23,8 +23,10 @@ func _init(source_polygon:Polygon2D = null) -> void: if source_polygon != null:
 	set_source_polygon(source_polygon.polygon)
 
 var tween:Tween
-func restart_tween() -> void:
+func kill_tween() -> void:
 	if tween and tween.is_running(): tween.kill()
+func restart_tween() -> void:
+	kill_tween()
 	
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
 
