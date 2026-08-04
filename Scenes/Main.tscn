@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://vo3icwm517sa" path="res://Scenes/UI/BumperButton.tscn" id="1_kln2b"]
 [ext_resource type="Shader" uid="uid://b07ljafjsjme2" path="res://Assets/Shaders/RollingLines.gdshader" id="1_pbw6q"]
 [ext_resource type="Shader" uid="uid://d186wwy6s4tux" path="res://Assets/Shaders/HSVLock.gdshader" id="1_r150o"]
+[ext_resource type="Script" uid="uid://b83fj271mwxqq" path="res://Scripts/UI/MainMenu.gd" id="2_v1gob"]
 [ext_resource type="Script" uid="uid://dayv2bojpdlp1" path="res://Scripts/AnimatedPolygon.gd" id="3_kln2b"]
 [ext_resource type="FontFile" uid="uid://bmo1e4xyqhfp7" path="res://Assets/Fonts/xirod.regular.otf" id="4_v1gob"]
 
@@ -20,7 +21,11 @@ shader_parameter/val_lock = -1.0
 
 [node name="Main" type="Node" unique_id=1870239524]
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2140020456]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=400383172]
+follow_viewport_enabled = true
+
+[node name="Backdrop" type="ColorRect" parent="CanvasLayer" unique_id=2140020456]
+z_index = -1
 material = SubResource("ShaderMaterial_j1l8g")
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,19 +34,102 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.3019608, 0.14901961, 0.14901961, 1)
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=332934590]
-position = Vector2(67, 55)
-color = Color(0.445, 0.89, 0.6675, 1)
-polygon = PackedVector2Array(0, 0, 225, 0, 295, -20, 295, -10, 225, 10, 0, 10)
+[node name="MainMenu" type="Control" parent="CanvasLayer" unique_id=1998370174]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-174, 144)
+script = ExtResource("2_v1gob")
+exposed = true
 
-[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=2113783211]
-position = Vector2(67, 219)
-color = Color(0.445, 0.89, 0.6675, 1)
-polygon = PackedVector2Array(0, 0, 225, 0, 295, 20, 295, 30, 225, 10, 0, 10)
+[node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer/MainMenu" unique_id=1719201466]
+clip_children = 1
+polygon = PackedVector2Array(384, 0, 46, 0, 83, 149, 47, 288, 384, 288)
 
-[node name="AnimatedPolygon" type="Polygon2D" parent="." unique_id=288547654]
+[node name="Title" type="Label" parent="CanvasLayer/MainMenu/Polygon2D3" unique_id=1499468620]
+offset_left = 101.0
+offset_top = 26.0
+offset_right = 303.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.9, 1, 0.95, 1)
+theme_override_fonts/font = ExtResource("4_v1gob")
+theme_override_font_sizes/font_size = 21
+text = "[GAME NAME]"
+metadata/_edit_use_anchors_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/MainMenu/Polygon2D3" unique_id=332934590]
+position = Vector2(67, 68)
+color = Color(0.445, 0.89, 0.6675, 1)
+offset = Vector2(0, -5)
+polygon = PackedVector2Array(-50, 0, 225, 0, 295, -20, 295, -10, 225, 10, -50, 10)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MainMenu/Polygon2D3" unique_id=1744667911]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 131.0
+offset_top = 92.0
+offset_right = 369.0
+offset_bottom = 206.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Control" type="Control" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer" unique_id=2112429465]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer" unique_id=73858710]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 18
+
+[node name="Start" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer/VBoxContainer" unique_id=690257377 instance=ExtResource("1_kln2b")]
+layout_mode = 2
+offset_transform_enabled = true
+text = "START"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer/VBoxContainer" unique_id=1973795097]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1765037667]
+custom_minimum_size = Vector2(7, 0)
+layout_mode = 2
+
+[node name="Options" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1657156917 instance=ExtResource("1_kln2b")]
+layout_mode = 2
+size_flags_horizontal = 8
+offset_transform_enabled = true
+text = "OPTIONS"
+
+[node name="Quit" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer/VBoxContainer" unique_id=1605436147 instance=ExtResource("1_kln2b")]
+layout_mode = 2
+offset_transform_enabled = true
+text = "QUIT"
+
+[node name="Control2" type="Control" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer" unique_id=1301391054]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Polygon2D2" type="Polygon2D" parent="CanvasLayer/MainMenu/Polygon2D3" unique_id=2113783211]
+position = Vector2(67, 227)
+color = Color(0.445, 0.89, 0.6675, 1)
+polygon = PackedVector2Array(-50, 0, 225, 0, 295, 20, 295, 30, 225, 10, -50, 10)
+
+[node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/MainMenu" unique_id=288547654]
 position = Vector2(-174, 144)
-rotation = 29.193893
+rotation = 480.87903
 color = Color(1, 0.5, 0.5, 1)
 polygon = PackedVector2Array(269, 0, 281.13068, 22.125465, 281.49118, 44.583824, 274.2083, 65.8316, 255.83421, 83.12557, 260.53403, 107.91673, 253.93686, 129.3873, 240.44452, 147.34459, 217.62558, 158.11423, 214.43448, 183.14435, 201.52544, 201.52544, 183.14435, 214.43448, 158.11423, 217.62558, 147.34457, 240.44453, 129.3873, 253.93686, 107.916725, 260.53403, 83.125565, 255.83421, 65.83161, 274.2083, 44.58383, 281.49118, 22.125462, 281.13068, -1.1758363e-05, 269, -22.125454, 281.13068, -44.583817, 281.49118, -65.831604, 274.2083, -83.12558, 255.8342, -107.91672, 260.53403, -129.38733, 253.93684, -147.34457, 240.44453, -158.11421, 217.62558, -183.14435, 214.43448, -201.52544, 201.52544, -214.4345, 183.14435, -217.6256, 158.11421, -240.44453, 147.34457, -253.93684, 129.38731, -260.53403, 107.91674, -255.8342, 83.12558, -274.2083, 65.8316, -281.49118, 44.583817, -281.1307, 22.125448, -269, -2.3516726e-05, -281.1307, -22.125433, -281.49118, -44.583797, -274.2083, -65.83158, -255.83421, -83.125565, -260.53403, -107.916725, -253.93686, -129.38731, -240.44452, -147.3446, -217.62556, -158.11426, -214.4345, -183.14433, -201.52545, -201.5254, -183.14432, -214.43451, -158.11418, -217.62561, -147.34464, -240.44449, -129.38734, -253.93684, -107.91677, -260.53403, -83.125595, -255.8342, -65.83162, -274.2083, -44.58384, -281.49118, -22.12547, -281.13068, 3.2077928e-06, -269, 22.125477, -281.13068, 44.583843, -281.49118, 65.83162, -274.2083, 83.1256, -255.8342, 107.91678, -260.534, 129.38734, -253.93683, 147.34465, -240.44449, 158.11418, -217.62561, 183.14432, -214.43451, 201.52539, -201.52547, 214.43446, -183.14438, 217.62556, -158.11424, 240.44452, -147.3446, 253.93686, -129.3873, 260.53403, -107.916725, 255.83421, -83.12556, 274.2083, -65.83157, 281.49118, -44.583794, 281.1307, -22.125423, 269, 0, 242.78, 0, 239.26016, -18.830149, 227.16832, -35.9799, 233.36877, -56.02687, 230.8975, -75.02313, 221.7311, -91.844025, 204.9315, -104.417816, 204.63364, -125.399666, 196.41313, -142.70251, 182.49742, -155.86755, 162.63454, -162.63458, 155.8675, -182.49745, 142.70245, -196.41318, 125.39971, -204.6336, 104.417854, -204.93147, 91.84406, -221.73106, 75.02318, -230.89749, 56.026913, -233.36877, 35.979942, -227.1683, 18.830193, -239.26015, 2.8951224e-06, -242.78, -18.830187, -239.26015, -35.97994, -227.1683, -56.02691, -233.36877, -75.02317, -230.89749, -91.844055, -221.73108, -104.417854, -204.93149, -125.3997, -204.6336, -142.70245, -196.41318, -155.8675, -182.49745, -162.63457, -162.63454, -182.49744, -155.86751, -196.41313, -142.70253, -204.63364, -125.399666, -204.9315, -104.41782, -221.73108, -91.844025, -230.8975, -75.02314, -233.36877, -56.026875, -227.16832, -35.979904, -239.26016, -18.830154, -242.78, -2.1224501e-05, -239.26016, 18.83017, -227.16832, 35.979923, -233.36877, 56.02689, -230.89749, 75.023155, -221.73108, 91.84404, -204.93149, 104.41783, -204.63365, 125.399635, -196.41316, 142.70248, -182.49744, 155.86752, -162.63455, 162.63455, -155.86752, 182.49744, -142.70248, 196.41315, -125.399635, 204.63365, -104.41784, 204.93149, -91.84402, 221.7311, -75.023155, 230.89749, -56.026894, 233.36877, -35.979923, 227.16832, -18.830173, 239.26015, -1.0612251e-05, 242.78, 18.830181, 239.26015, 35.979935, 227.16832, 56.0269, 233.36877, 75.02314, 230.8975, 91.844025, 221.73108, 104.417816, 204.9315, 125.399635, 204.63365, 142.7025, 196.41315, 155.86752, 182.49744, 162.63455, 162.63455, 182.49744, 155.86752, 196.41315, 142.7025, 204.63364, 125.39965, 204.9315, 104.417816, 221.73108, 91.84403, 230.8975, 75.02315, 233.36877, 56.02689, 227.16832, 35.97993, 239.26015, 18.830183, 242.78, 0)
 script = ExtResource("3_kln2b")
@@ -59,66 +147,11 @@ inner_radius_modifiers = Dictionary[int, float]({
 4: 12.78
 })
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1744667911]
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -57.0
-offset_bottom = 57.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="PostProcessLayer" type="CanvasLayer" parent="." unique_id=1267908603]
+layer = 2
+follow_viewport_enabled = true
 
-[node name="Control" type="Control" parent="HBoxContainer" unique_id=2112429465]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=73858710]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_constants/separation = 18
-
-[node name="Start" parent="HBoxContainer/VBoxContainer" unique_id=690257377 instance=ExtResource("1_kln2b")]
-layout_mode = 2
-text = "START"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=1973795097]
-layout_mode = 2
-
-[node name="Control" type="Control" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1765037667]
-custom_minimum_size = Vector2(7, 0)
-layout_mode = 2
-
-[node name="Options" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1657156917 instance=ExtResource("1_kln2b")]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "OPTIONS"
-
-[node name="Quit" parent="HBoxContainer/VBoxContainer" unique_id=1605436147 instance=ExtResource("1_kln2b")]
-layout_mode = 2
-text = "QUIT"
-
-[node name="Control2" type="Control" parent="HBoxContainer" unique_id=1301391054]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Title" type="Label" parent="." unique_id=1499468620]
-offset_left = 101.0
-offset_top = 18.0
-offset_right = 303.0
-offset_bottom = 44.0
-theme_override_colors/font_color = Color(0.9, 1, 0.95, 1)
-theme_override_fonts/font = ExtResource("4_v1gob")
-theme_override_font_sizes/font_size = 21
-text = "[GAME NAME]"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=400383172]
-
-[node name="PostProcess" type="ColorRect" parent="CanvasLayer" unique_id=704268011]
+[node name="PostProcess" type="ColorRect" parent="PostProcessLayer" unique_id=704268011]
 material = SubResource("ShaderMaterial_r150o")
 anchors_preset = 15
 anchor_right = 1.0
