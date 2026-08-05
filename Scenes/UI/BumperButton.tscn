@@ -6,44 +6,44 @@
 
 [node name="BumperButton" type="Button" unique_id=690257377]
 texture_filter = 3
-custom_minimum_size = Vector2(189, 26)
+custom_minimum_size = Vector2(756, 104)
 offset_right = 189.0
 offset_bottom = 26.0
 theme_override_colors/font_color = Color(0.3, 0.14700001, 0.14700001, 1)
 theme_override_fonts/font = ExtResource("1_346em")
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 68
 text = "BUTTON"
 flat = true
 script = ExtResource("2_j1l8g")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=152612953]
 show_behind_parent = true
-position = Vector2(-31, 0)
+position = Vector2(-108, 0)
 color = Color(1, 0.5019608, 0.5019608, 1)
-polygon = PackedVector2Array(6, 0, 21, 0, 28, 13, 21, 26, 6, 26, 13, 13)
+polygon = PackedVector2Array(24, 0, 84, 0, 112, 52, 84, 104, 24, 104, 52, 52)
 
 [node name="PulseEffectPolygon2D" type="Polygon2D" parent="Polygon2D" unique_id=1097211058]
 self_modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
-polygon = PackedVector2Array(6, 0, 21, 0, 28, 13, 21, 26, 6, 26, 13, 13)
+polygon = PackedVector2Array(24, 0, 84, 0, 112, 52, 84, 104, 24, 104, 52, 52)
 script = ExtResource("3_0odji")
 pulse_length = 1.0
-pulse_width = 5.0
-_source_polygon = PackedVector2Array(6, 0, 21, 0, 28, 13, 21, 26, 6, 26, 13, 13)
+pulse_width = 20.0
+_source_polygon = PackedVector2Array(24, 0, 84, 0, 112, 52, 84, 104, 24, 104, 52, 52)
 metadata/_custom_type_script = "uid://8lm70yv1qi0p"
 
 [node name="Polygon2D2" type="Polygon2D" parent="." unique_id=839514662]
 show_behind_parent = true
-position = Vector2(94.5, 13)
-color = Color(1, 0.5019608, 0.5019608, 1)
-polygon = PackedVector2Array(-90.5, -13, 100.5, -13, 107.5, 0, 100.5, 13, -90.5, 13, -83.5, 0)
+position = Vector2(378, 52)
+color = Color(1, 0.7, 0.7, 1)
+polygon = PackedVector2Array(-362, -52, 402, -52, 430, 0, 402, 52, -362, 52, -334, 0)
 
 [node name="PulseEffectPolygon2D" type="Polygon2D" parent="Polygon2D2" unique_id=1896444389]
 self_modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
-polygon = PackedVector2Array(-90.5, -13, 100.5, -13, 107.5, 0, 100.5, 13, -90.5, 13, -83.5, 0)
+polygon = PackedVector2Array(-362, -52, 402, -52, 430, 0, 402, 52, -362, 52, -334, 0)
 script = ExtResource("3_0odji")
 pulse_length = 1.0
-pulse_width = 5.0
-_source_polygon = PackedVector2Array(-90.5, -13, 100.5, -13, 107.5, 0, 100.5, 13, -90.5, 13, -83.5, 0)
+pulse_width = 20.0
+_source_polygon = PackedVector2Array(-362, -52, 402, -52, 430, 0, 402, 52, -362, 52, -334, 0)
 metadata/_custom_type_script = "uid://8lm70yv1qi0p"

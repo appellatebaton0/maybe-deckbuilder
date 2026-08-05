@@ -3,7 +3,7 @@ class_name PulseEffectPolygon2D extends Polygon2D
 ## Creates a pulse-fade effect for a source polygon.
 
 @export var pulse_length := 0.5
-@export var pulse_width := 2.7
+@export var pulse_width := 10.8
 var _current_width := 0.0
 
 @export_tool_button("Test Pulse") var test_pulse = pulse

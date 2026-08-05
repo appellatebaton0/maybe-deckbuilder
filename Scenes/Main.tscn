@@ -3,19 +3,70 @@
 [ext_resource type="PackedScene" uid="uid://vo3icwm517sa" path="res://Scenes/UI/BumperButton.tscn" id="1_kln2b"]
 [ext_resource type="Shader" uid="uid://b07ljafjsjme2" path="res://Assets/Shaders/RollingLines.gdshader" id="1_pbw6q"]
 [ext_resource type="Shader" uid="uid://d186wwy6s4tux" path="res://Assets/Shaders/HSVLock.gdshader" id="1_r150o"]
+[ext_resource type="FontFile" uid="uid://bc0guixa3awho" path="res://Assets/Fonts/squares-bold.regular.otf" id="2_idj7w"]
 [ext_resource type="Script" uid="uid://b83fj271mwxqq" path="res://Scripts/UI/MainMenu.gd" id="2_v1gob"]
 [ext_resource type="Script" uid="uid://dayv2bojpdlp1" path="res://Scripts/AnimatedPolygon.gd" id="3_kln2b"]
 [ext_resource type="FontFile" uid="uid://bmo1e4xyqhfp7" path="res://Assets/Fonts/xirod.regular.otf" id="4_v1gob"]
+[ext_resource type="FontFile" uid="uid://8ge2hn13v70s" path="res://Assets/Fonts/xanmono.regular.otf" id="6_jw32o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j1l8g"]
 shader = ExtResource("1_pbw6q")
-shader_parameter/multiplier = Vector2(32, 24)
+shader_parameter/multiplier = Vector2(16, 12)
 shader_parameter/time_scale = 2.455
-shader_parameter/line_color = Color(0.15686275, 0.32156864, 0.23529412, 1)
+shader_parameter/line_color = Color(0.32156864, 0.15686275, 0.15686275, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4muc"]
+albedo_color = Color(1, 0.4, 0.4, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dhcmq"]
+material = SubResource("StandardMaterial3D_u4muc")
+size = Vector3(10, 1, 10)
+
+[sub_resource type="GDScript" id="GDScript_50glp"]
+script/source = "extends Camera3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _input(event: InputEvent) -> void:
+	rotate(Vector3.UP, 0.05)
+	pass
+"
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u4muc"]
+sky_top_color = Color(0.9, 0.747, 0.747, 1)
+sky_horizon_color = Color(0.54901963, 0.54901963, 0.54901963, 1)
+ground_bottom_color = Color(0.54901963, 0.54901963, 0.54901963, 1)
+ground_horizon_color = Color(0.54901963, 0.54901963, 0.54901963, 1)
+
+[sub_resource type="Sky" id="Sky_ncx8q"]
+sky_material = SubResource("ProceduralSkyMaterial_u4muc")
+
+[sub_resource type="Environment" id="Environment_dhcmq"]
+background_mode = 1
+background_color = Color(1, 0.70980394, 0.70980394, 1)
+sky = SubResource("Sky_ncx8q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jw32o"]
+albedo_color = Color(0.9098039, 0.5921569, 0.5921569, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dhcmq"]
+material = SubResource("StandardMaterial3D_jw32o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4dds"]
+albedo_color = Color(0.34901962, 0.16078432, 0.16078432, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cv4rg"]
+material = SubResource("StandardMaterial3D_v4dds")
+size = Vector3(1, 5, 5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r150o"]
 shader = ExtResource("1_r150o")
-shader_parameter/hue_lock = 150.0
+shader_parameter/hue_lock = 150.000007125
 shader_parameter/sat_lock = -1.0
 shader_parameter/val_lock = -1.0
 
@@ -47,33 +98,33 @@ exposed = true
 
 [node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer/MainMenu" unique_id=1719201466]
 clip_children = 1
-polygon = PackedVector2Array(384, 0, 46, 0, 83, 149, 47, 288, 384, 288)
+polygon = PackedVector2Array(1536, 0, 184, 0, 332, 596, 188, 1152, 1536, 1152)
 
 [node name="Title" type="Label" parent="CanvasLayer/MainMenu/Polygon2D3" unique_id=1499468620]
-offset_left = 101.0
-offset_top = 26.0
-offset_right = 303.0
-offset_bottom = 52.0
+offset_left = 404.0
+offset_top = 104.0
+offset_right = 1214.0
+offset_bottom = 206.0
 theme_override_colors/font_color = Color(0.9, 1, 0.95, 1)
 theme_override_fonts/font = ExtResource("4_v1gob")
-theme_override_font_sizes/font_size = 21
+theme_override_font_sizes/font_size = 84
 text = "[GAME NAME]"
 metadata/_edit_use_anchors_ = true
 
 [node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/MainMenu/Polygon2D3" unique_id=332934590]
-position = Vector2(67, 68)
-color = Color(0.445, 0.89, 0.6675, 1)
+position = Vector2(268, 272)
+color = Color(0.8901961, 0.44313726, 0.44313726, 1)
 offset = Vector2(0, -5)
-polygon = PackedVector2Array(-50, 0, 225, 0, 295, -20, 295, -10, 225, 10, -50, 10)
+polygon = PackedVector2Array(-200, 0, 900, 0, 1180, -80, 1180, -40, 900, 40, -200, 40)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MainMenu/Polygon2D3" unique_id=1744667911]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 131.0
-offset_top = 92.0
-offset_right = 369.0
-offset_bottom = 206.0
+offset_left = 462.0
+offset_top = 368.0
+offset_right = 1414.0
+offset_bottom = 824.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -91,7 +142,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_constants/separation = 18
+theme_override_constants/separation = 60
 
 [node name="Start" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer/VBoxContainer" unique_id=690257377 instance=ExtResource("1_kln2b")]
 layout_mode = 2
@@ -102,7 +153,7 @@ text = "START"
 layout_mode = 2
 
 [node name="Control" type="Control" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1765037667]
-custom_minimum_size = Vector2(7, 0)
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
 [node name="Options" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1657156917 instance=ExtResource("1_kln2b")]
@@ -123,29 +174,98 @@ size_flags_vertical = 4
 mouse_filter = 2
 
 [node name="Polygon2D2" type="Polygon2D" parent="CanvasLayer/MainMenu/Polygon2D3" unique_id=2113783211]
-position = Vector2(67, 227)
-color = Color(0.445, 0.89, 0.6675, 1)
-polygon = PackedVector2Array(-50, 0, 225, 0, 295, 20, 295, 30, 225, 10, -50, 10)
+position = Vector2(268, 908)
+color = Color(0.8901961, 0.44313726, 0.44313726, 1)
+polygon = PackedVector2Array(-200, 0, 900, 0, 1180, 80, 1180, 120, 900, 40, -200, 40)
 
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/MainMenu" unique_id=288547654]
-position = Vector2(-174, 144)
-rotation = 480.87903
+position = Vector2(-696, 576)
+rotation = 2208.8625
 color = Color(1, 0.5, 0.5, 1)
-polygon = PackedVector2Array(269, 0, 281.13068, 22.125465, 281.49118, 44.583824, 274.2083, 65.8316, 255.83421, 83.12557, 260.53403, 107.91673, 253.93686, 129.3873, 240.44452, 147.34459, 217.62558, 158.11423, 214.43448, 183.14435, 201.52544, 201.52544, 183.14435, 214.43448, 158.11423, 217.62558, 147.34457, 240.44453, 129.3873, 253.93686, 107.916725, 260.53403, 83.125565, 255.83421, 65.83161, 274.2083, 44.58383, 281.49118, 22.125462, 281.13068, -1.1758363e-05, 269, -22.125454, 281.13068, -44.583817, 281.49118, -65.831604, 274.2083, -83.12558, 255.8342, -107.91672, 260.53403, -129.38733, 253.93684, -147.34457, 240.44453, -158.11421, 217.62558, -183.14435, 214.43448, -201.52544, 201.52544, -214.4345, 183.14435, -217.6256, 158.11421, -240.44453, 147.34457, -253.93684, 129.38731, -260.53403, 107.91674, -255.8342, 83.12558, -274.2083, 65.8316, -281.49118, 44.583817, -281.1307, 22.125448, -269, -2.3516726e-05, -281.1307, -22.125433, -281.49118, -44.583797, -274.2083, -65.83158, -255.83421, -83.125565, -260.53403, -107.916725, -253.93686, -129.38731, -240.44452, -147.3446, -217.62556, -158.11426, -214.4345, -183.14433, -201.52545, -201.5254, -183.14432, -214.43451, -158.11418, -217.62561, -147.34464, -240.44449, -129.38734, -253.93684, -107.91677, -260.53403, -83.125595, -255.8342, -65.83162, -274.2083, -44.58384, -281.49118, -22.12547, -281.13068, 3.2077928e-06, -269, 22.125477, -281.13068, 44.583843, -281.49118, 65.83162, -274.2083, 83.1256, -255.8342, 107.91678, -260.534, 129.38734, -253.93683, 147.34465, -240.44449, 158.11418, -217.62561, 183.14432, -214.43451, 201.52539, -201.52547, 214.43446, -183.14438, 217.62556, -158.11424, 240.44452, -147.3446, 253.93686, -129.3873, 260.53403, -107.916725, 255.83421, -83.12556, 274.2083, -65.83157, 281.49118, -44.583794, 281.1307, -22.125423, 269, 0, 242.78, 0, 239.26016, -18.830149, 227.16832, -35.9799, 233.36877, -56.02687, 230.8975, -75.02313, 221.7311, -91.844025, 204.9315, -104.417816, 204.63364, -125.399666, 196.41313, -142.70251, 182.49742, -155.86755, 162.63454, -162.63458, 155.8675, -182.49745, 142.70245, -196.41318, 125.39971, -204.6336, 104.417854, -204.93147, 91.84406, -221.73106, 75.02318, -230.89749, 56.026913, -233.36877, 35.979942, -227.1683, 18.830193, -239.26015, 2.8951224e-06, -242.78, -18.830187, -239.26015, -35.97994, -227.1683, -56.02691, -233.36877, -75.02317, -230.89749, -91.844055, -221.73108, -104.417854, -204.93149, -125.3997, -204.6336, -142.70245, -196.41318, -155.8675, -182.49745, -162.63457, -162.63454, -182.49744, -155.86751, -196.41313, -142.70253, -204.63364, -125.399666, -204.9315, -104.41782, -221.73108, -91.844025, -230.8975, -75.02314, -233.36877, -56.026875, -227.16832, -35.979904, -239.26016, -18.830154, -242.78, -2.1224501e-05, -239.26016, 18.83017, -227.16832, 35.979923, -233.36877, 56.02689, -230.89749, 75.023155, -221.73108, 91.84404, -204.93149, 104.41783, -204.63365, 125.399635, -196.41316, 142.70248, -182.49744, 155.86752, -162.63455, 162.63455, -155.86752, 182.49744, -142.70248, 196.41315, -125.399635, 204.63365, -104.41784, 204.93149, -91.84402, 221.7311, -75.023155, 230.89749, -56.026894, 233.36877, -35.979923, 227.16832, -18.830173, 239.26015, -1.0612251e-05, 242.78, 18.830181, 239.26015, 35.979935, 227.16832, 56.0269, 233.36877, 75.02314, 230.8975, 91.844025, 221.73108, 104.417816, 204.9315, 125.399635, 204.63365, 142.7025, 196.41315, 155.86752, 182.49744, 162.63455, 162.63455, 182.49744, 155.86752, 196.41315, 142.7025, 204.63364, 125.39965, 204.9315, 104.417816, 221.73108, 91.84403, 230.8975, 75.02315, 233.36877, 56.02689, 227.16832, 35.97993, 239.26015, 18.830183, 242.78, 0)
+polygon = PackedVector2Array(1076, 0, 1124.5227, 88.50186, 1125.9647, 178.3353, 1096.8333, 263.3264, 1023.33685, 332.5023, 1042.1361, 431.66693, 1015.74744, 517.5492, 961.7781, 589.37836, 870.5023, 632.4569, 857.7379, 732.5774, 806.10175, 806.10175, 732.5774, 857.7379, 632.4569, 870.5023, 589.3783, 961.77814, 517.5492, 1015.74744, 431.6669, 1042.1361, 332.50226, 1023.33685, 263.32645, 1096.8333, 178.33533, 1125.9647, 88.50185, 1124.5227, -4.7033453e-05, 1076, -88.501816, 1124.5227, -178.33527, 1125.9647, -263.32642, 1096.8333, -332.50232, 1023.3368, -431.66687, 1042.1361, -517.5493, 1015.7474, -589.3783, 961.77814, -632.45685, 870.5023, -732.5774, 857.7379, -806.10175, 806.10175, -857.738, 732.5774, -870.5024, 632.45685, -961.77814, 589.3783, -1015.7474, 517.54926, -1042.1361, 431.66696, -1023.3368, 332.50232, -1096.8333, 263.3264, -1125.9647, 178.33527, -1124.5228, 88.50179, -1076, -9.4066905e-05, -1124.5228, -88.50173, -1125.9647, -178.33519, -1096.8333, -263.32632, -1023.33685, -332.50226, -1042.1361, -431.6669, -1015.74744, -517.54926, -961.7781, -589.3784, -870.50226, -632.45703, -857.738, -732.57733, -806.1018, -806.1016, -732.5773, -857.73804, -632.4567, -870.50244, -589.37854, -961.77795, -517.5494, -1015.7474, -431.66708, -1042.1361, -332.50238, -1023.3368, -263.32648, -1096.8333, -178.33536, -1125.9647, -88.50188, -1124.5227, 1.2831171e-05, -1076, 88.50191, -1124.5227, 178.33537, -1125.9647, 263.32648, -1096.8333, 332.5024, -1023.3368, 431.6671, -1042.136, 517.5494, -1015.7473, 589.3786, -961.77795, 632.4567, -870.50244, 732.5773, -857.73804, 806.10156, -806.10187, 857.73785, -732.5775, 870.50226, -632.457, 961.7781, -589.3784, 1015.74744, -517.5492, 1042.1361, -431.6669, 1023.33685, -332.50223, 1096.8333, -263.3263, 1125.9647, -178.33517, 1124.5228, -88.50169, 1076, 0, 981.12, 0, 957.04065, -75.320595, 918.5502, -145.48395, 933.4751, -224.10748, 933.1006, -303.1827, 886.9244, -367.3761, 828.63605, -422.21118, 818.53455, -501.59866, 793.7427, -576.6879, 729.9897, -623.4702, 657.6092, -657.60944, 623.47, -729.9898, 576.6877, -793.74286, 501.59885, -818.5344, 422.21133, -828.636, 367.37625, -886.92426, 303.1829, -933.1005, 224.10765, -933.4751, 145.48412, -918.5501, 75.32077, -957.0406, 1.1699739e-05, -981.12, -75.32075, -957.0406, -145.4841, -918.5501, -224.10764, -933.4751, -303.18286, -933.1005, -367.37622, -886.9243, -422.21133, -828.636, -501.5988, -818.5344, -576.6877, -793.74286, -623.47, -729.9898, -657.6094, -657.60925, -729.98975, -623.47003, -793.7427, -576.688, -818.53455, -501.59866, -828.63605, -422.2112, -886.9243, -367.3761, -933.1006, -303.18274, -933.4751, -224.1075, -918.5502, -145.48396, -957.04065, -75.32062, -981.12, -8.577223e-05, -957.04065, 75.32068, -918.5502, 145.48404, -933.4751, 224.10756, -933.1005, 303.1828, -886.9243, 367.37616, -828.636, 422.21124, -818.5346, 501.59854, -793.7428, 576.6878, -729.98975, 623.4701, -657.6093, 657.6093, -623.4701, 729.98975, -576.6878, 793.74274, -501.59854, 818.5346, -422.21127, 828.636, -367.37607, 886.9244, -303.1828, 933.1005, -224.10757, 933.4751, -145.48404, 918.5502, -75.320694, 957.0406, -4.2886117e-05, 981.12, 75.320724, 957.0406, 145.48407, 918.5502, 224.1076, 933.4751, 303.18274, 933.1006, 367.3761, 886.9243, 422.21118, 828.63605, 501.59854, 818.5346, 576.68787, 793.74274, 623.4701, 729.98975, 657.6093, 657.6093, 729.98975, 623.4701, 793.74274, 576.68787, 818.53455, 501.5986, 828.63605, 422.21118, 886.9243, 367.37613, 933.1006, 303.18277, 933.4751, 224.10756, 918.5502, 145.48407, 957.0406, 75.32073, 981.12, 0)
 script = ExtResource("3_kln2b")
 outer_rotation = 7.0
 outer_vertices = 80
-outer_radius = 282.0
+outer_radius = 1128.0
 outer_radius_modifiers = Dictionary[int, float]({
-2: 3.0,
-4: -16.0
+2: 12.0,
+4: -64.0
 })
 inner_vertices = 80
-inner_radius = 240.0
+inner_radius = 960.0
 inner_radius_modifiers = Dictionary[int, float]({
-2: -10.0,
-4: 12.78
+2: -30.0,
+4: 51.12
 })
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/MainMenu" unique_id=1025746010]
+position = Vector2(115, 628)
+color = Color(0.7019608, 0.27450982, 0.27450982, 1)
+polygon = PackedVector2Array(0, 0, 300, 0, 300, 400, 0, 400)
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/Polygon2D" unique_id=2044460381]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 72.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_idj7w")
+theme_override_font_sizes/font_size = 34
+text = "MASQUARADE"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/MainMenu/Polygon2D" unique_id=317560820]
+offset_top = 59.0
+offset_right = 300.0
+offset_bottom = 203.0
+theme_override_fonts/font = ExtResource("6_jw32o")
+theme_override_font_sizes/font_size = 16
+text = "+1 Action
++2 Cards
++3 Treasure
+
+If something is happening, stop it from happening."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=1634468553]
+visible = false
+offset_right = 170.0
+offset_bottom = 132.0
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=616532771]
+handle_input_locally = false
+size = Vector2i(384, 288)
+render_target_update_mode = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1948168133]
+mesh = SubResource("BoxMesh_dhcmq")
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=2097741516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4855394, 2.7526374)
+fov = 63.7
+script = SubResource("GDScript_50glp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1112594193]
+environment = SubResource("Environment_dhcmq")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1893852326]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3163311, 0)
+mesh = SubResource("CylinderMesh_dhcmq")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1273612597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8682106, 1.3163311, 3.310298)
+mesh = SubResource("BoxMesh_cv4rg")
+
+[node name="Label3D" type="Label3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1800355398]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.2629309, 2.1349669, 2.7066956)
+modulate = Color(1, 0.8509804, 0.8509804, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "According to all known
+laws of aviation, there is no way
+a bee should be able to fly."
+font = ExtResource("2_idj7w")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1164519652]
 
 [node name="PostProcessLayer" type="CanvasLayer" parent="." unique_id=1267908603]
 layer = 2
@@ -160,3 +280,4 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0, 0, 1)
+metadata/_edit_lock_ = true

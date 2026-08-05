@@ -1,8 +1,8 @@
 shader_type canvas_item;
 
-uniform float hue_lock = -1.;
+uniform float hue_lock : hint_range(0.0, 360.0) = -1.;
 uniform float sat_lock = -1.;
-uniform float val_lock = -1.;
+uniform float val_lock : hint_range(0.0, 2.0) = -1.;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
 
