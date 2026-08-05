@@ -2,6 +2,9 @@
 class_name RegularPolygon extends Polygon2D
 ## Provides tools for making a regular polygon, with several available modifications
 
+@export var code:String
+@export_tool_button("Load Code") var load_code := func(): create_from_code(code)
+
 @export_tool_button("Regenerate") var regen_button := generate
 
 @export_group("Outer", "outer_")
@@ -10,15 +13,18 @@ class_name RegularPolygon extends Polygon2D
 	set(to):
 		outer_vertices = to
 		generate()
+		_generate_code()
 
 @export var outer_radius := 0.0: ## The outer radius of this polygon.
 	set(to):
 		outer_radius = to
 		generate()
+		_generate_code()
 @export var outer_radius_modifiers:Dictionary[int, float]: ## Any modifiers to the radius. Formatted as [every n points], [radius modification]
 	set(to):
 		outer_radius_modifiers = to
 		generate()
+		_generate_code()
 
 @export_group("Inner", "inner_")
 ## The number of points on this polygon.
@@ -26,15 +32,78 @@ class_name RegularPolygon extends Polygon2D
 	set(to):
 		inner_vertices = to
 		generate()
+		_generate_code()
 
 @export var inner_radius := 0.0: ## The inner radius of this polygon. If <=0, is not hollow.
 	set(to):
 		inner_radius = to
 		generate()
+		_generate_code()
 @export var inner_radius_modifiers:Dictionary[int, float]: ## Any modifiers to the radius. Formatted as [every n points], [radius modification]
 	set(to):
 		inner_radius_modifiers = to
 		generate()
+		_generate_code()
+
+func _generate_code() -> String: 
+	
+	## Not gonna bother making this encoded at ALL. Literally just text, pretty much.
+	var new_code:String = str(outer_vertices) + ":" + str(outer_radius) + ":"
+	
+	for key in outer_radius_modifiers:
+		new_code += str(key) + "," + str(outer_radius_modifiers[key]) + "|"
+	
+	new_code += "-" + str(inner_vertices) + ":" + str(inner_radius) + ":"
+	
+	for key in inner_radius_modifiers:
+		new_code += str(key) + "," + str(inner_radius_modifiers[key]) + "|"
+	
+	code = new_code
+	
+	return new_code
+func create_from_code(use_code:String) -> void: 
+	print("USING ", use_code)
+	
+	var to_be_set := ["outer_vertices", "outer_radius", "inner_vertices", "inner_radius"]
+	var in_outer := true
+	
+	var i = 0
+	var cache:String = ""
+	while i < use_code.length():
+		
+		var character := use_code[i]
+		
+		print(cache, " / ", character)
+		
+		match character:
+			":":
+				var write_property:String = to_be_set.pop_front()
+				set(write_property, float(cache))
+				
+				cache = ""
+			"|":
+				var split := cache.split(",")
+				
+				var modulo:int = int(split[0])
+				var amount:float = float(split[1])
+				
+				(outer_radius_modifiers if in_outer else inner_radius_modifiers)[modulo] = amount
+				cache = ""
+			"-":
+				in_outer = false
+				cache = ""
+			_:
+				cache += character
+		
+		i+=1
+	
+	code = use_code
+	
+	
+	
+
+func _init(use_code:String = "") -> void:
+	if use_code != "": create_from_code(use_code)
 
 func generate():
 	
