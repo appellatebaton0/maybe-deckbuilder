@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://blnlo6x7n7mvc"]
+
+[ext_resource type="Shader" uid="uid://b07ljafjsjme2" path="res://Assets/Shaders/RollingLines.gdshader" id="1_gom81"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_77pv1"]
+shader = ExtResource("1_gom81")
+shader_parameter/multiplier = Vector2(8, 8)
+shader_parameter/time_scale = 1.0
+shader_parameter/line_color = Color(0.12941177, 0, 0.6, 1)
+
+[sub_resource type="Gradient" id="Gradient_77pv1"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dhcmq"]
+gradient = SubResource("Gradient_77pv1")
+width = 512
+height = 512
+
+[sub_resource type="Shader" id="Shader_vb1eb"]
+code = "shader_type canvas_item;
+
+uniform float hue_lock : hint_range(0.0, 360.0) = -1.;
+uniform float sat_lock = -1.;
+uniform float val_lock : hint_range(0.0, 2.0) = -1.;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
+
+// Stealing rgb <-> hsv functions since I don't want to write them
+// myself. again.
+
+vec3 rgb2hsv(vec3 rgb) {
+	float r = rgb.r;
+	float g = rgb.g;
+	float b = rgb.b;
+	
+	float max_val = max(r, max(g, b));
+	float min_val = min(r, min(g, b));
+	float delta = max_val - min_val;
+	
+	float h = 0.0;
+	float s = 0.0;
+	float v = max_val;
+	
+	if (delta > 0.0001) {
+		s = delta / max_val;
+		
+		if (abs(r - max_val) < 0.0001)      h = (g - b) / delta;
+		else if (abs(g - max_val) < 0.0001) h = 2.0 + (b - r) / delta;
+		else                                h = 4.0 + (r - g) / delta;
+		
+		h *= 60.0;
+		if (h < 0.0) h += 360.0;
+	}
+	
+	return vec3(h, s, v);
+}
+
+// Convert HSV color to RGB color space
+// Input: vec3 with h in [0, 360], s and v in [0, 1]
+// Output: vec3 with components in range [0, 1]
+vec3 hsv2rgb(vec3 hsv) {
+	float h = hsv.x;
+	float s = hsv.y;
+	float v = hsv.z;
+	
+	float c = v * s;
+	float x = c * (1.0 - abs(mod(h / 60.0, 2.0) - 1.0));
+	float m = v - c;
+	
+	vec3 rgb;
+	
+	if (h < 60.0)       rgb = vec3(c, x, 0.0);
+	else if (h < 120.0) rgb = vec3(x, c, 0.0);
+	else if (h < 180.0) rgb = vec3(0.0, c, x);
+	else if (h < 240.0) rgb = vec3(0.0, x, c);
+	else if (h < 300.0) rgb = vec3(x, 0.0, c);
+	else                rgb = vec3(c, 0.0, x);
+	
+	rgb += m;
+	return rgb;
+}
+
+void fragment() {
+	
+	vec3 screen_rgb = texture(TEXTURE, UV).rgb;
+	vec3 screen_hsv = rgb2hsv(screen_rgb.rgb);
+	
+	if (hue_lock >= 0.0) {screen_hsv.r = hue_lock;}
+	if (sat_lock >= 0.0) {screen_hsv.g = sat_lock;}
+	if (val_lock >= 0.0) {screen_hsv.b = val_lock;}
+	
+	COLOR.rgb = hsv2rgb(screen_hsv);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gom81"]
+shader = SubResource("Shader_vb1eb")
+shader_parameter/hue_lock = 150.000007125
+shader_parameter/sat_lock = -1.0
+shader_parameter/val_lock = -1.0
+
+[sub_resource type="GDScript" id="GDScript_dhcmq"]
+script/source = "extends SubViewport
+
+@export var vp:Viewport
+@export var camera:Camera2D
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	#var viewport := cl.get_viewport()
+	#print(viewport)
+	#print(viewport.world_2d)
+	
+	print(world_2d)
+	world_2d = vp.world_2d
+	print(world_2d)
+	
+	#camera.custom_viewport = self
+"
+
+[node name="DemoViewportDuping" type="Node" unique_id=999720]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1328003491]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=773230861]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=1757035825]
+handle_input_locally = false
+size = Vector2i(1536, 1152)
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1164317326]
+material = SubResource("ShaderMaterial_77pv1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1022228706]
+visibility_layer = 2
+position = Vector2(398, 549)
+texture = SubResource("GradientTexture2D_dhcmq")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=998842898]
+layer = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer2" unique_id=1824147979]
+material = SubResource("ShaderMaterial_gom81")
+custom_minimum_size = Vector2(768, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer2/SubViewportContainer" unique_id=905627843 node_paths=PackedStringArray("vp", "camera")]
+transparent_bg = true
+canvas_cull_mask = 4294967294
+size = Vector2i(1536, 1152)
+render_target_update_mode = 4
+script = SubResource("GDScript_dhcmq")
+vp = NodePath("../../../CanvasLayer/SubViewportContainer/SubViewport")
+camera = NodePath("")
