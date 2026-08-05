@@ -4,8 +4,6 @@ uniform float hue_lock : hint_range(0.0, 360.0) = -1.;
 uniform float sat_lock = -1.;
 uniform float val_lock : hint_range(0.0, 2.0) = -1.;
 
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
-
 // Stealing rgb <-> hsv functions since I don't want to write them
 // myself. again.
 
@@ -63,7 +61,7 @@ vec3 hsv2rgb(vec3 hsv) {
 
 void fragment() {
 	
-	vec3 screen_rgb = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
+	vec3 screen_rgb = texture(TEXTURE, UV).rgb;
 	vec3 screen_hsv = rgb2hsv(screen_rgb.rgb);
 	
 	if (hue_lock >= 0.0) {screen_hsv.r = hue_lock;}

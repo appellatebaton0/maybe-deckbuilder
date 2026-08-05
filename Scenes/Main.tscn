@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dayv2bojpdlp1" path="res://Scripts/AnimatedPolygon.gd" id="3_kln2b"]
 [ext_resource type="FontFile" uid="uid://bmo1e4xyqhfp7" path="res://Assets/Fonts/xirod.regular.otf" id="4_v1gob"]
 [ext_resource type="FontFile" uid="uid://8ge2hn13v70s" path="res://Assets/Fonts/xanmono.regular.otf" id="6_jw32o"]
+[ext_resource type="Script" uid="uid://b1eacdcdwujf7" path="res://Scripts/ViewportCopy.gd" id="9_vy5pj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j1l8g"]
 shader = ExtResource("1_pbw6q")
@@ -64,34 +65,40 @@ albedo_color = Color(0.34901962, 0.16078432, 0.16078432, 1)
 material = SubResource("StandardMaterial3D_v4dds")
 size = Vector3(1, 5, 5)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r150o"]
+[sub_resource type="Gradient" id="Gradient_vy5pj"]
+colors = PackedColorArray(0.04900019, 0, 0.98, 1, 0, 1, 0.36666656, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vy5pj"]
+gradient = SubResource("Gradient_vy5pj")
+width = 89
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kpch"]
 shader = ExtResource("1_r150o")
-shader_parameter/hue_lock = 200.0000095
+shader_parameter/hue_lock = 150.000007125
 shader_parameter/sat_lock = -1.0
 shader_parameter/val_lock = -1.0
 
-[sub_resource type="GDScript" id="GDScript_dhcmq"]
-script/source = "extends SubViewport
-
-@export var cl:CanvasLayer
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	var viewport := cl.get_viewport()
-	print(viewport)
-	print(viewport.world_2d)
-	
-	world_2d = viewport.world_2d
-	
-	print(world_2d)
-"
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vy5pj"]
+shader = ExtResource("1_r150o")
+shader_parameter/hue_lock = 291.742013857745
+shader_parameter/sat_lock = -1.0
+shader_parameter/val_lock = -1.0
 
 [node name="Main" type="Node" unique_id=1870239524]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=400383172]
 follow_viewport_enabled = true
 
-[node name="Backdrop" type="ColorRect" parent="CanvasLayer" unique_id=2140020456]
+[node name="NoHueLock" type="SubViewportContainer" parent="CanvasLayer" unique_id=283651520]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MainViewport" type="SubViewport" parent="CanvasLayer/NoHueLock" unique_id=18127901]
+handle_input_locally = false
+size = Vector2i(1536, 1152)
+render_target_update_mode = 4
+
+[node name="Backdrop" type="ColorRect" parent="CanvasLayer/NoHueLock/MainViewport" unique_id=2140020456]
 z_index = -1
 material = SubResource("ShaderMaterial_j1l8g")
 anchors_preset = 15
@@ -101,7 +108,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.3019608, 0.14901961, 0.14901961, 1)
 
-[node name="MainMenu" type="Control" parent="CanvasLayer" unique_id=1998370174]
+[node name="MainMenu" type="Control" parent="CanvasLayer/NoHueLock/MainViewport" unique_id=1998370174]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,11 +119,11 @@ pivot_offset = Vector2(-174, 144)
 script = ExtResource("2_v1gob")
 exposed = true
 
-[node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer/MainMenu" unique_id=1719201466]
+[node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer/NoHueLock/MainViewport/MainMenu" unique_id=1719201466]
 clip_children = 1
 polygon = PackedVector2Array(1536, 0, 184, 0, 332, 596, 188, 1152, 1536, 1152)
 
-[node name="Title" type="Label" parent="CanvasLayer/MainMenu/Polygon2D3" unique_id=1499468620]
+[node name="Title" type="Label" parent="CanvasLayer/NoHueLock/MainViewport/MainMenu/Polygon2D3" unique_id=1499468620]
 offset_left = 404.0
 offset_top = 104.0
 offset_right = 1214.0
@@ -127,76 +134,50 @@ theme_override_font_sizes/font_size = 84
 text = "[GAME NAME]"
 metadata/_edit_use_anchors_ = true
 
-[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/MainMenu/Polygon2D3" unique_id=332934590]
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/NoHueLock/MainViewport/MainMenu/Polygon2D3" unique_id=332934590]
 position = Vector2(268, 272)
 color = Color(0.8901961, 0.44313726, 0.44313726, 1)
 offset = Vector2(0, -5)
 polygon = PackedVector2Array(-200, 0, 900, 0, 1180, -80, 1180, -40, 900, 40, -200, 40)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MainMenu/Polygon2D3" unique_id=1744667911]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 462.0
-offset_top = 368.0
-offset_right = 1414.0
-offset_bottom = 824.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-alignment = 1
-metadata/_edit_use_anchors_ = true
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/NoHueLock/MainViewport/MainMenu/Polygon2D3" unique_id=306826110]
+offset_left = 553.0
+offset_top = 376.0
+offset_right = 1373.0
+offset_bottom = 838.0
+theme_override_constants/separation = 75
 
-[node name="Control" type="Control" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer" unique_id=2112429465]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer" unique_id=73858710]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-mouse_filter = 2
-theme_override_constants/separation = 60
-
-[node name="Start" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer/VBoxContainer" unique_id=690257377 instance=ExtResource("1_kln2b")]
+[node name="Start" parent="CanvasLayer/NoHueLock/MainViewport/MainMenu/Polygon2D3/VBoxContainer" unique_id=690257377 instance=ExtResource("1_kln2b")]
 layout_mode = 2
 offset_transform_enabled = true
 text = "START"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer/VBoxContainer" unique_id=1973795097]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/NoHueLock/MainViewport/MainMenu/Polygon2D3/VBoxContainer" unique_id=1673730922]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1765037667]
-custom_minimum_size = Vector2(40, 0)
+[node name="Control" type="Control" parent="CanvasLayer/NoHueLock/MainViewport/MainMenu/Polygon2D3/VBoxContainer/HBoxContainer" unique_id=1737983813]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 
-[node name="Options" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1657156917 instance=ExtResource("1_kln2b")]
+[node name="Options" parent="CanvasLayer/NoHueLock/MainViewport/MainMenu/Polygon2D3/VBoxContainer/HBoxContainer" unique_id=1657156917 instance=ExtResource("1_kln2b")]
 layout_mode = 2
 size_flags_horizontal = 8
 offset_transform_enabled = true
 text = "OPTIONS"
 
-[node name="Quit" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer/VBoxContainer" unique_id=1605436147 instance=ExtResource("1_kln2b")]
+[node name="Quit" parent="CanvasLayer/NoHueLock/MainViewport/MainMenu/Polygon2D3/VBoxContainer" unique_id=1605436147 instance=ExtResource("1_kln2b")]
 layout_mode = 2
 offset_transform_enabled = true
 text = "QUIT"
 
-[node name="Control2" type="Control" parent="CanvasLayer/MainMenu/Polygon2D3/HBoxContainer" unique_id=1301391054]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-size_flags_vertical = 4
-mouse_filter = 2
-
-[node name="Polygon2D2" type="Polygon2D" parent="CanvasLayer/MainMenu/Polygon2D3" unique_id=2113783211]
+[node name="Polygon2D2" type="Polygon2D" parent="CanvasLayer/NoHueLock/MainViewport/MainMenu/Polygon2D3" unique_id=2113783211]
 position = Vector2(268, 908)
 color = Color(0.8901961, 0.44313726, 0.44313726, 1)
 polygon = PackedVector2Array(-200, 0, 900, 0, 1180, 80, 1180, 120, 900, 40, -200, 40)
 
-[node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/MainMenu" unique_id=288547654]
+[node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/NoHueLock/MainViewport/MainMenu" unique_id=288547654]
 position = Vector2(-696, 576)
-rotation = 3575.666
+rotation = 4099.741
 color = Color(1, 0.5, 0.5, 1)
 polygon = PackedVector2Array(1076, 0, 1124.5227, 88.50186, 1125.9647, 178.3353, 1096.8333, 263.3264, 1023.33685, 332.5023, 1042.1361, 431.66693, 1015.74744, 517.5492, 961.7781, 589.37836, 870.5023, 632.4569, 857.7379, 732.5774, 806.10175, 806.10175, 732.5774, 857.7379, 632.4569, 870.5023, 589.3783, 961.77814, 517.5492, 1015.74744, 431.6669, 1042.1361, 332.50226, 1023.33685, 263.32645, 1096.8333, 178.33533, 1125.9647, 88.50185, 1124.5227, -4.7033453e-05, 1076, -88.501816, 1124.5227, -178.33527, 1125.9647, -263.32642, 1096.8333, -332.50232, 1023.3368, -431.66687, 1042.1361, -517.5493, 1015.7474, -589.3783, 961.77814, -632.45685, 870.5023, -732.5774, 857.7379, -806.10175, 806.10175, -857.738, 732.5774, -870.5024, 632.45685, -961.77814, 589.3783, -1015.7474, 517.54926, -1042.1361, 431.66696, -1023.3368, 332.50232, -1096.8333, 263.3264, -1125.9647, 178.33527, -1124.5228, 88.50179, -1076, -9.4066905e-05, -1124.5228, -88.50173, -1125.9647, -178.33519, -1096.8333, -263.32632, -1023.33685, -332.50226, -1042.1361, -431.6669, -1015.74744, -517.54926, -961.7781, -589.3784, -870.50226, -632.45703, -857.738, -732.57733, -806.1018, -806.1016, -732.5773, -857.73804, -632.4567, -870.50244, -589.37854, -961.77795, -517.5494, -1015.7474, -431.66708, -1042.1361, -332.50238, -1023.3368, -263.32648, -1096.8333, -178.33536, -1125.9647, -88.50188, -1124.5227, 1.2831171e-05, -1076, 88.50191, -1124.5227, 178.33537, -1125.9647, 263.32648, -1096.8333, 332.5024, -1023.3368, 431.6671, -1042.136, 517.5494, -1015.7473, 589.3786, -961.77795, 632.4567, -870.50244, 732.5773, -857.73804, 806.10156, -806.10187, 857.73785, -732.5775, 870.50226, -632.457, 961.7781, -589.3784, 1015.74744, -517.5492, 1042.1361, -431.6669, 1023.33685, -332.50223, 1096.8333, -263.3263, 1125.9647, -178.33517, 1124.5228, -88.50169, 1076, 0, 981.12, 0, 957.04065, -75.320595, 918.5502, -145.48395, 933.4751, -224.10748, 933.1006, -303.1827, 886.9244, -367.3761, 828.63605, -422.21118, 818.53455, -501.59866, 793.7427, -576.6879, 729.9897, -623.4702, 657.6092, -657.60944, 623.47, -729.9898, 576.6877, -793.74286, 501.59885, -818.5344, 422.21133, -828.636, 367.37625, -886.92426, 303.1829, -933.1005, 224.10765, -933.4751, 145.48412, -918.5501, 75.32077, -957.0406, 1.1699739e-05, -981.12, -75.32075, -957.0406, -145.4841, -918.5501, -224.10764, -933.4751, -303.18286, -933.1005, -367.37622, -886.9243, -422.21133, -828.636, -501.5988, -818.5344, -576.6877, -793.74286, -623.47, -729.9898, -657.6094, -657.60925, -729.98975, -623.47003, -793.7427, -576.688, -818.53455, -501.59866, -828.63605, -422.2112, -886.9243, -367.3761, -933.1006, -303.18274, -933.4751, -224.1075, -918.5502, -145.48396, -957.04065, -75.32062, -981.12, -8.577223e-05, -957.04065, 75.32068, -918.5502, 145.48404, -933.4751, 224.10756, -933.1005, 303.1828, -886.9243, 367.37616, -828.636, 422.21124, -818.5346, 501.59854, -793.7428, 576.6878, -729.98975, 623.4701, -657.6093, 657.6093, -623.4701, 729.98975, -576.6878, 793.74274, -501.59854, 818.5346, -422.21127, 828.636, -367.37607, 886.9244, -303.1828, 933.1005, -224.10757, 933.4751, -145.48404, 918.5502, -75.320694, 957.0406, -4.2886117e-05, 981.12, 75.320724, 957.0406, 145.48407, 918.5502, 224.1076, 933.4751, 303.18274, 933.1006, 367.3761, 886.9243, 422.21118, 828.63605, 501.59854, 818.5346, 576.68787, 793.74274, 623.4701, 729.98975, 657.6093, 657.6093, 729.98975, 623.4701, 793.74274, 576.68787, 818.53455, 501.5986, 828.63605, 422.21118, 886.9243, 367.37613, 933.1006, 303.18277, 933.4751, 224.10756, 918.5502, 145.48407, 957.0406, 75.32073, 981.12, 0)
 script = ExtResource("3_kln2b")
@@ -214,36 +195,36 @@ inner_radius_modifiers = Dictionary[int, float]({
 4: 51.12
 })
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=1634468553]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/NoHueLock/MainViewport" unique_id=1634468553]
 visible = false
 offset_right = 384.0
 offset_bottom = 288.0
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=616532771]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/NoHueLock/MainViewport/SubViewportContainer" unique_id=616532771]
 handle_input_locally = false
 size = Vector2i(384, 288)
 render_target_update_mode = 0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1948168133]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CanvasLayer/NoHueLock/MainViewport/SubViewportContainer/SubViewport" unique_id=1948168133]
 mesh = SubResource("BoxMesh_dhcmq")
 
-[node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=2097741516]
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/NoHueLock/MainViewport/SubViewportContainer/SubViewport" unique_id=2097741516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4855394, 2.7526374)
 fov = 63.7
 script = SubResource("GDScript_50glp")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1112594193]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer/NoHueLock/MainViewport/SubViewportContainer/SubViewport" unique_id=1112594193]
 environment = SubResource("Environment_dhcmq")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1893852326]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CanvasLayer/NoHueLock/MainViewport/SubViewportContainer/SubViewport" unique_id=1893852326]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3163311, 0)
 mesh = SubResource("CylinderMesh_dhcmq")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1273612597]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CanvasLayer/NoHueLock/MainViewport/SubViewportContainer/SubViewport" unique_id=1273612597]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8682106, 1.3163311, 3.310298)
 mesh = SubResource("BoxMesh_cv4rg")
 
-[node name="Label3D" type="Label3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1800355398]
+[node name="Label3D" type="Label3D" parent="CanvasLayer/NoHueLock/MainViewport/SubViewportContainer/SubViewport" unique_id=1800355398]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.2629309, 2.1349669, 2.7066956)
 modulate = Color(1, 0.8509804, 0.8509804, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -252,62 +233,69 @@ laws of aviation, there is no way
 a bee should be able to fly."
 font = ExtResource("2_idj7w")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1164519652]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="CanvasLayer/NoHueLock/MainViewport/SubViewportContainer/SubViewport" unique_id=1164519652]
 
-[node name="PostProcess" type="ColorRect" parent="CanvasLayer" unique_id=704268011]
-material = SubResource("ShaderMaterial_r150o")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(1, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer" unique_id=1025746010]
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/NoHueLock/MainViewport" unique_id=1025746010]
+top_level = true
+visibility_layer = 2
+texture_repeat = 2
 position = Vector2(115, 628)
 color = Color(0.7019608, 0.27450982, 0.27450982, 1)
+texture = SubResource("GradientTexture2D_vy5pj")
 polygon = PackedVector2Array(0, 0, 300, 0, 300, 400, 0, 400)
 
-[node name="Label" type="Label" parent="CanvasLayer/Polygon2D" unique_id=2044460381]
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 72.0
-offset_bottom = 26.0
+[node name="Label" type="Label" parent="CanvasLayer/NoHueLock/MainViewport/Polygon2D" unique_id=2044460381]
+visibility_layer = 2
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 291.0
+offset_bottom = 50.0
 theme_override_fonts/font = ExtResource("2_idj7w")
 theme_override_font_sizes/font_size = 34
 text = "MASQUARADE"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="CanvasLayer/Polygon2D" unique_id=317560820]
-offset_top = 59.0
+[node name="Label2" type="Label" parent="CanvasLayer/NoHueLock/MainViewport/Polygon2D" unique_id=317560820]
+visibility_layer = 2
+offset_top = 84.0
 offset_right = 300.0
-offset_bottom = 203.0
+offset_bottom = 354.0
 theme_override_fonts/font = ExtResource("6_jw32o")
 theme_override_font_sizes/font_size = 16
-text = "+1 Action
-+2 Cards
-+3 Treasure
+text = "+1 Something
++2 Something Else
 
-If something is happening, stop it from happening."
+According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat lil body off the ground."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="PostProcessLayer" type="CanvasLayer" parent="." unique_id=1267908603]
-layer = 2
-visible = false
-follow_viewport_enabled = true
+[node name="HueLockPrimary" type="SubViewportContainer" parent="CanvasLayer" unique_id=1583101744]
+material = SubResource("ShaderMaterial_4kpch")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="PostProcessLayer" unique_id=1004384506]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/HueLockPrimary" unique_id=929980663 node_paths=PackedStringArray("source")]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4293918721
+size = Vector2i(1536, 1152)
+render_target_update_mode = 4
+script = ExtResource("9_vy5pj")
+source = NodePath("../../NoHueLock/MainViewport")
+
+[node name="HueLockSecondary" type="SubViewportContainer" parent="CanvasLayer" unique_id=1004384506]
+material = SubResource("ShaderMaterial_vy5pj")
 offset_right = 1536.0
 offset_bottom = 1152.0
 
-[node name="SubViewport" type="SubViewport" parent="PostProcessLayer/SubViewportContainer2" unique_id=813157775 node_paths=PackedStringArray("cl")]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/HueLockSecondary" unique_id=813157775 node_paths=PackedStringArray("source")]
+transparent_bg = true
 handle_input_locally = false
+canvas_cull_mask = 4293918722
 size = Vector2i(1536, 1152)
-render_target_update_mode = 0
-script = SubResource("GDScript_dhcmq")
-cl = NodePath("../../../CanvasLayer")
-
-[node name="Camera2D" type="Camera2D" parent="PostProcessLayer/SubViewportContainer2/SubViewport" unique_id=1737378424]
+render_target_update_mode = 4
+script = ExtResource("9_vy5pj")
+source = NodePath("../../NoHueLock/MainViewport")
