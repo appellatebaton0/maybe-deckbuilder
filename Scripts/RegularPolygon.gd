@@ -144,7 +144,7 @@ func make_points_for(radius:float, vertices:int, modifiers:Dictionary[int, float
 			
 			# Apply Modulo Modifiers.
 			for modifier in modifiers:              # Check for each modifier,
-				if i % modifier == 0:               # If the remainder is 0,
+				if (i + 1) % modifier == 0:         # If the remainder is 0,
 					distance += modifiers[modifier] # Apply the modifier.
 			
 			# Create the point and add it to the new array.
