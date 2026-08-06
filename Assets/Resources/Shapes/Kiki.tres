@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Shape" format=3 uid="uid://ob1qgfi6wl1t"]
+
+[ext_resource type="Script" uid="uid://obj8ufn75ly8" path="res://Scripts/Shape.gd" id="1_rua65"]
+
+[resource]
+script = ExtResource("1_rua65")
+name = "as"
+metadata/_custom_type_script = "uid://obj8ufn75ly8"

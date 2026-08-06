@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ShapeTrait" format=3 uid="uid://dnxdcbvqckvi8"]
+
+[ext_resource type="Script" uid="uid://btxplxktpbwa0" path="res://Scripts/ShapeTrait.gd" id="1_pl3yb"]
+[ext_resource type="Resource" uid="uid://ob1qgfi6wl1t" path="res://Assets/Resources/Shapes/Kiki.tres" id="2_gr46v"]
+
+[resource]
+script = ExtResource("1_pl3yb")
+shape = ExtResource("2_gr46v")
+metadata/_custom_type_script = "uid://btxplxktpbwa0"
