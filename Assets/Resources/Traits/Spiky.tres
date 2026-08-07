@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Trait" format=3 uid="uid://0aegaxhvaslv"]
+
+[ext_resource type="Script" uid="uid://cu5jwswxjslxh" path="res://Scripts/Trait.gd" id="1_ms15v"]
+
+[resource]
+script = ExtResource("1_ms15v")
+name = "Spiky"
+color = Color(1, 0.18039216, 0.5882353, 1)
+text_color = Color(0.15, 0.027000003, 0.08850001, 1)
+metadata/_custom_type_script = "uid://cu5jwswxjslxh"

@@ -2,8 +2,15 @@
 
 [ext_resource type="Script" uid="uid://obj8ufn75ly8" path="res://Scripts/Shape.gd" id="1_5b3h7"]
 [ext_resource type="Script" uid="uid://cu5jwswxjslxh" path="res://Scripts/Trait.gd" id="1_upe4j"]
+[ext_resource type="Resource" uid="uid://fsa1ohimgy04" path="res://Assets/Resources/Traits/Natural.tres" id="2_7pxc5"]
+[ext_resource type="Resource" uid="uid://0aegaxhvaslv" path="res://Assets/Resources/Traits/Spiky.tres" id="3_i53by"]
+[ext_resource type="Resource" uid="uid://d2spwqskr6xkb" path="res://Assets/Resources/Traits/Negative.tres" id="4_r4h6s"]
 
 [resource]
 script = ExtResource("1_5b3h7")
 name = "Cusp"
+color = Color(1, 0.9411765, 0.2784314, 1)
+text_color = Color(0.19, 0.17859998, 0.053199995, 1)
+_traits = Array[ExtResource("1_upe4j")]([ExtResource("2_7pxc5"), ExtResource("3_i53by"), ExtResource("4_r4h6s")])
+shape = PackedVector2Array(0.0061558154, -0.4217828, 0.024471741, -0.3454915, 0.054496765, -0.2730047, 0.09549149, -0.20610741, 0.14644662, -0.14644662, 0.20610741, -0.09549149, 0.2730047, -0.054496765, 0.3454915, -0.024471741, 0.4217828, -0.0061558154, 0.5, 0, 0.4217828, 0.0061558536, 0.3454915, 0.024471741, 0.2730047, 0.054496765, 0.2061075, 0.095491454, 0.14644654, 0.14644669, 0.09549152, 0.20610733, 0.05449673, 0.27300477, 0.024471741, 0.3454915, 0.0061558154, 0.42178282, 0, 0.49999997, -0.0061558154, 0.42178282, -0.024471741, 0.3454915, -0.05449673, 0.27300477, -0.09549152, 0.20610733, -0.14644669, 0.14644654, -0.20610745, 0.095491454, -0.27300465, 0.054496806, -0.34549147, 0.024471741, -0.42178273, 0.0061558536, -0.5, 0, -0.5, -3.8146975e-08, -0.4217828, -0.0061558154, -0.34549153, -0.024471741, -0.27300474, -0.05449673, -0.20610738, -0.09549149, -0.14644662, -0.14644662, -0.09549149, -0.20610738, -0.05449673, -0.27300474, -0.024471741, -0.3454915, -0.0061558154, -0.4217828, 0, -0.5)
 metadata/_custom_type_script = "uid://obj8ufn75ly8"

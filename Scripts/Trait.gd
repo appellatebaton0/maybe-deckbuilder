@@ -12,9 +12,14 @@ static func compare_traits(a:Trait, b:Trait): return a.name == b.name
 ## The name of the trait
 @export var name:String:get = _get_name
 func _get_name() -> String: return name
+
 ## The color of the trait
 @export var color:Color:get = _get_color
 func _get_color() -> Color: return color
+
+## The text color of the trait
+@export var text_color:Color:get = _get_text_color
+func _get_text_color() -> Color: return text_color
 
 func _init(new_name:String, new_color:Color) -> void:
 	

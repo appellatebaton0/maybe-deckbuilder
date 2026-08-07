@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Trait" format=3 uid="uid://b8ayrtxxr3pt5"]
+
+[ext_resource type="Script" uid="uid://cu5jwswxjslxh" path="res://Scripts/Trait.gd" id="1_y6phx"]
+
+[resource]
+script = ExtResource("1_y6phx")
+name = "Holy"
+color = Color(0.94, 1, 0.7, 1)
+text_color = Color(0.22799999, 0.24, 0.168, 1)
+metadata/_custom_type_script = "uid://cu5jwswxjslxh"

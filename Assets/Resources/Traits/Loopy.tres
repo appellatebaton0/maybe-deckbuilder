@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Trait" format=3 uid="uid://ca1di24a6dcer"]
+
+[ext_resource type="Script" uid="uid://cu5jwswxjslxh" path="res://Scripts/Trait.gd" id="1_twi4t"]
+
+[resource]
+script = ExtResource("1_twi4t")
+name = "Loopy"
+color = Color(0.9882353, 0.18039216, 1, 1)
+text_color = Color(0.14795004, 0.027000003, 0.15, 1)
+metadata/_custom_type_script = "uid://cu5jwswxjslxh"

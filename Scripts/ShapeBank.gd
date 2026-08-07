@@ -42,6 +42,9 @@ static func get_shapes() -> Array[Shape]:
 func _init() -> void:
 	## Initialize the shapes.
 	if _shapes.size() <= 0: get_shapes()
+	
+	for shape in _shapes:
+		_contents[shape] = 0
 
 #endregion
 

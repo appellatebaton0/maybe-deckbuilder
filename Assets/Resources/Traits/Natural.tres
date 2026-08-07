@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Trait" format=3 uid="uid://fsa1ohimgy04"]
+
+[ext_resource type="Script" uid="uid://cu5jwswxjslxh" path="res://Scripts/Trait.gd" id="1_o0mfe"]
+
+[resource]
+script = ExtResource("1_o0mfe")
+name = "Natural"
+color = Color(0.08627451, 0.87058824, 0.21568628, 1)
+text_color = Color(0.015000004, 0.15, 0.037499983, 1)
+metadata/_custom_type_script = "uid://cu5jwswxjslxh"

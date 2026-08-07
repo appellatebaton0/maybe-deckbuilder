@@ -5,5 +5,3 @@
 ## The name and desc of the card.
 @abstract func get_card_name() -> String
 @abstract func get_description() -> String
-
-## Apply the 

@@ -68,5 +68,8 @@ void fragment() {
 	if (sat_lock >= 0.0) {screen_hsv.g = sat_lock;}
 	if (val_lock >= 0.0) {screen_hsv.b = val_lock;}
 	
+	// Rainbow time!
+	//screen_hsv.r = float(int((UV.x * 275.) + (UV.y * 275.) + (TIME * 20.)) % 350);
+	
 	COLOR.rgb = hsv2rgb(screen_hsv);
 }

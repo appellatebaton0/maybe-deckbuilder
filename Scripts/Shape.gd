@@ -9,6 +9,8 @@ func plural() -> String:
 
 ## The color of the shape.
 @export var color:Color
+## The text color of the shape.
+@export var text_color:Color
 
 ## The traits pertaining to this shape.
 @export var _traits:Array[Trait]

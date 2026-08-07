@@ -1,9 +1,16 @@
 [gd_resource type="Resource" script_class="Shape" format=3 uid="uid://ob1qgfi6wl1t"]
 
+[ext_resource type="Script" uid="uid://cu5jwswxjslxh" path="res://Scripts/Trait.gd" id="1_jgosj"]
 [ext_resource type="Script" uid="uid://obj8ufn75ly8" path="res://Scripts/Shape.gd" id="1_rua65"]
+[ext_resource type="Resource" uid="uid://ixtpfldrjkgn" path="res://Assets/Resources/Traits/Friendly.tres" id="2_0p1kl"]
+[ext_resource type="Resource" uid="uid://0aegaxhvaslv" path="res://Assets/Resources/Traits/Spiky.tres" id="3_wgiqg"]
+[ext_resource type="Resource" uid="uid://ca1di24a6dcer" path="res://Assets/Resources/Traits/Loopy.tres" id="4_1unit"]
 
 [resource]
 script = ExtResource("1_rua65")
 name = "Kiki"
-_traits = null
+color = Color(1, 0.24705882, 0.18039216, 1)
+text_color = Color(0.19, 0.047183335, 0.0342, 1)
+_traits = Array[ExtResource("1_jgosj")]([ExtResource("2_0p1kl"), ExtResource("3_wgiqg"), ExtResource("4_1unit")])
+shape = PackedVector2Array(0.25, 0, 0.4698463, 0.17101006, 0.19151112, 0.1606969, 0.22499998, 0.38971147, 0.043412056, 0.24620195, -0.084449455, 0.47893664, -0.12500003, 0.21650636, -0.34472, 0.28925446, -0.23492315, 0.08550506, -0.5, -4.3711392e-08, -0.23492315, -0.08550504, -0.33424434, -0.2804643, -0.117499985, -0.20351599, -0.083351105, -0.47270775, 0.04341204, -0.24620195, 0.22499998, -0.38971147, 0.19151108, -0.16069695, 0.45699596, -0.16633305)
 metadata/_custom_type_script = "uid://obj8ufn75ly8"

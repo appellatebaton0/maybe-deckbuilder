@@ -6,6 +6,7 @@ class_name ShapeTrait extends Trait
 
 func _get_name() -> String: return shape.name if shape else name
 func _get_color() -> Color: return shape.color if shape else color
+func _get_text_color() -> Color: return shape.text_color if shape else text_color
 
 func _init(set_shape:Shape = shape) -> void:
 	
