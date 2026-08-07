@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Shape" format=3 uid="uid://cmeahuiq28loc"]
+
+[ext_resource type="Script" uid="uid://obj8ufn75ly8" path="res://Scripts/Shape.gd" id="1_qwlg2"]
+[ext_resource type="Script" uid="uid://cu5jwswxjslxh" path="res://Scripts/Trait.gd" id="1_tfhy0"]
+
+[resource]
+script = ExtResource("1_qwlg2")
+name = "Bouba"
+metadata/_custom_type_script = "uid://obj8ufn75ly8"

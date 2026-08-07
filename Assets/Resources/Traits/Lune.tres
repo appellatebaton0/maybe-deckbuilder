@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShapeTrait" format=3 uid="uid://cm4611n2w4hx0"]
+
+[ext_resource type="Script" uid="uid://btxplxktpbwa0" path="res://Scripts/ShapeTrait.gd" id="1_5pwg7"]
+[ext_resource type="Resource" uid="uid://cmx68c6nf81ht" path="res://Assets/Resources/Shapes/Lune.tres" id="2_5pwg7"]
+
+[resource]
+script = ExtResource("1_5pwg7")
+shape = ExtResource("2_5pwg7")
+name = "as"
+metadata/_custom_type_script = "uid://btxplxktpbwa0"

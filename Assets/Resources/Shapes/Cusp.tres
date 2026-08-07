@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Shape" format=3 uid="uid://ct27nbv1cjagt"]
+
+[ext_resource type="Script" uid="uid://obj8ufn75ly8" path="res://Scripts/Shape.gd" id="1_5b3h7"]
+[ext_resource type="Script" uid="uid://cu5jwswxjslxh" path="res://Scripts/Trait.gd" id="1_upe4j"]
+
+[resource]
+script = ExtResource("1_5b3h7")
+name = "Cusp"
+metadata/_custom_type_script = "uid://obj8ufn75ly8"

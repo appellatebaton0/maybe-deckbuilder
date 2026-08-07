@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShapeTrait" format=3 uid="uid://vslpc8v7yv08"]
+
+[ext_resource type="Script" uid="uid://btxplxktpbwa0" path="res://Scripts/ShapeTrait.gd" id="1_h6tga"]
+[ext_resource type="Resource" uid="uid://ct27nbv1cjagt" path="res://Assets/Resources/Shapes/Cusp.tres" id="2_h6tga"]
+
+[resource]
+script = ExtResource("1_h6tga")
+shape = ExtResource("2_h6tga")
+name = "as"
+metadata/_custom_type_script = "uid://btxplxktpbwa0"

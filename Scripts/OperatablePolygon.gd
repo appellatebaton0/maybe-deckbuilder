@@ -16,6 +16,29 @@ class_name OperatablePolygon extends RegularPolygon
 	
 	#queue_free()
 
+enum TYPES {TRANSLATE, SCALE, ROTATE}
+@export var transformation := TYPES.TRANSLATE
+@export var amount:Variant
+@export_tool_button("Transform") var trans := func():
+	
+	var new_polygon:PackedVector2Array = polygon
+	
+	match transformation:
+		TYPES.TRANSLATE:
+			if amount is Vector2:
+				for i in new_polygon.size():
+					new_polygon[i] += amount
+		TYPES.SCALE:
+			if amount is float:
+				for i in new_polygon.size():
+					new_polygon[i] *= amount
+		TYPES.ROTATE:
+			if amount is float:
+				for i in new_polygon.size():
+					new_polygon[i] = new_polygon[i].rotated(deg_to_rad(amount))
+	
+	polygon = new_polygon
+
 func mass_offset(a:PackedVector2Array, offset:Vector2) -> PackedVector2Array:
 	for i in a.size(): a[i] = a[i] + offset
 	return a

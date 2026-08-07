@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShapeTrait" format=3 uid="uid://cvp48yrwwlv7s"]
+
+[ext_resource type="Script" uid="uid://btxplxktpbwa0" path="res://Scripts/ShapeTrait.gd" id="1_0aw0b"]
+[ext_resource type="Resource" uid="uid://bsvob7dkka4tu" path="res://Assets/Resources/Shapes/Trefoil.tres" id="2_0aw0b"]
+
+[resource]
+script = ExtResource("1_0aw0b")
+shape = ExtResource("2_0aw0b")
+name = "as"
+metadata/_custom_type_script = "uid://btxplxktpbwa0"
